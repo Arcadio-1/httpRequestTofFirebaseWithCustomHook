@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@mixin responsive($brekPoint) {
+  @if ($brekPoint==xl) {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if ($brekPoint==lg) {
+    @media (max-width: 1000px) {
+      @content;
+    }
+  }
+  @if ($brekPoint==md) {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @if ($brekPoint==sm) {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+  @if ($brekPoint==xs) {
+    @media (max-width: 400px) {
+      @content;
+    }
+  }
+}
+@mixin dflex($just: center, $alin: center) {
+  display: flex;
+  align-items: $alin;
+  justify-content: $just;
+}
+@mixin card($bgColor) {
+  @include dflex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.434);
+  text-transform: capitalize;
+  background-color: $bgColor;
+}
+html {
+  font-size: 62.5%;
+  @include responsive(lg) {
+    font-size: 58%;
+  }
+  @include responsive(md) {
+    font-size: 55%;
+  }
+  @include responsive(sm) {
+    font-size: 50%;
+  }
+  @include responsive(xs) {
+    font-size: 48%;
+  }
+}
+body {
+  background-color: rgb(232, 249, 254);
+}
+.container {
+  width: 95vw;
+  max-width: 650px;
+  margin: 0rem auto;
+}
+.add {
+  &-form {
+    @include card(thistle);
+    div {
+      width: 100%;
+    }
+    label {
+      font-size: 2rem;
+    }
+    input {
+      border-radius: 3px;
+      line-height: 2.5rem;
+      width: 100%;
+      border: transparent;
+      margin-top: 0.8rem;
+    }
+    &-action {
+      text-align: center;
+      @include dflex;
+      gap: 1rem;
+      button {
+        border-radius: 5px;
+        border: transparent;
+        background-color: transparent;
+        padding: 0.5rem 2rem;
+        cursor: pointer;
+      }
+      .add-btn {
+        color: snow;
+        background-color: rgb(12, 201, 34);
+        padding: 0.5rem 3rem;
+        &:hover {
+          border: 2px solid green;
+        }
+      }
+      .cancel-btn {
+        color: snow;
+        background-color: tomato;
+        &:hover {
+          border: 2px solid red;
+        }
+      }
+    }
+  }
+}
+.movies {
+  @include card(thistle);
+}
+
+.search-box {
+  padding: 1rem 2rem;
+  width: 100%;
+  border-bottom: 2px solid #999;
+  padding-bottom: 2rem;
+  form {
+    @include dflex;
+    @include responsive(sm) {
+      text-align: left;
+      flex-direction: column;
+      label {
+        margin-bottom: 0.5rem;
+        margin-right: auto;
+      }
+    }
+    label {
+      font-size: 1.5rem;
+      width: 16rem;
+    }
+    input {
+      border-radius: 3px;
+      line-height: 2.5rem;
+      width: 100%;
+      border: transparent;
+    }
+  }
+}
+.list {
+  text-align: center;
+  list-style: none;
+  &-item {
+    @include dflex;
+    flex-direction: column;
+    background-color: rgba(255, 250, 250, 0.628);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.01);
+    }
+    &-title {
+      margin-bottom: 1rem;
+    }
+    &-decription {
+      font-size: 1.2rem;
+    }
+    &-release {
+      font-weight: 800;
+      color: rgb(11, 9, 138);
+    }
+    button {
+      cursor: pointer;
+      color: snow;
+      background-color: tomato;
+      border: transparent;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      padding: 0.3rem 1rem;
+      &:hover {
+        box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.601);
+      }
+    }
+  }
+}
